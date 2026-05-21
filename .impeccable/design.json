@@ -1,0 +1,143 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-20T00:00:00Z",
+  "title": "Design System: xtinyrabbit",
+  "extensions": {
+    "colorMeta": {
+      "canvas":           { "role": "neutral",  "displayName": "Canvas",        "canonical": "#ffffff",  "tonalRamp": ["#1a1a1a","#404040","#666666","#8c8c8c","#b3b3b3","#d9d9d9","#f0f0f0","#ffffff"] },
+      "canvas-dim":       { "role": "neutral",  "displayName": "Canvas Dim",    "canonical": "#f8f7f5",  "tonalRamp": ["#1c1b19","#3a3836","#595754","#787674","#979593","#b6b4b2","#d7d5d2","#f8f7f5"] },
+      "ink":              { "role": "neutral",  "displayName": "Ink",           "canonical": "#1a1a1a",  "tonalRamp": ["#1a1a1a","#333333","#4d4d4d","#666666","#808080","#999999","#b3b3b3","#cccccc"] },
+      "ink-muted":        { "role": "neutral",  "displayName": "Ink Muted",     "canonical": "#6b7280",  "tonalRamp": ["#1f2330","#3b4456","#57607c","#6b7280","#8b95a6","#adb4c1","#ced3da","#eef0f3"] },
+      "signal":           { "role": "primary",  "displayName": "Signal Blue",   "canonical": "#1d4ed8",  "tonalRamp": ["#0a1a4a","#0f2a6e","#153a94","#1d4ed8","#4a76e8","#7a9ef0","#adc4f6","#dce9fd"] },
+      "signal-deep":      { "role": "primary",  "displayName": "Signal Deep",   "canonical": "#1e40af",  "tonalRamp": ["#0a1a3e","#0f2860","#153882","#1e40af","#4264c8","#7291de","#a4bcef","#d6e4fb"] },
+      "hairline":         { "role": "neutral",  "displayName": "Hairline",      "canonical": "#e5e7eb",  "tonalRamp": ["#20252e","#3a404c","#545c6b","#6b7280","#919aaa","#b5bcc9","#d5d9e0","#e5e7eb"] },
+      "code-surface":     { "role": "neutral",  "displayName": "Code Surface",  "canonical": "#f3f4f6",  "tonalRamp": ["#1c1d20","#373a40","#535760","#70747f","#9096a1","#b5b9c2","#d5d8de","#f3f4f6"] },
+      "canvas-dark":      { "role": "neutral",  "displayName": "Void",          "canonical": "#0f1117",  "tonalRamp": ["#0f1117","#1a1d26","#252a38","#31374a","#46506a","#616d8e","#8a94b0","#b8bed0"] },
+      "canvas-dim-dark":  { "role": "neutral",  "displayName": "Void Dim",      "canonical": "#1a1d26",  "tonalRamp": ["#0f1117","#1a1d26","#252a38","#31374a","#46506a","#616d8e","#8a94b0","#b8bed0"] },
+      "signal-dark":      { "role": "primary",  "displayName": "Signal Blue (Dark)", "canonical": "#60a5fa", "tonalRamp": ["#0a1a4a","#153a94","#2563eb","#3b82f6","#60a5fa","#93c5fd","#bfdbfe","#eff6ff"] },
+      "signal-deep-dark": { "role": "primary",  "displayName": "Signal Lighter","canonical": "#93c5fd",  "tonalRamp": ["#1d4ed8","#3b82f6","#60a5fa","#93c5fd","#bfdbfe","#dbeafe","#eff6ff","#ffffff"] }
+    },
+    "typographyMeta": {
+      "display":  { "displayName": "Display",  "purpose": "Hero wordmark on index page only. Appears once per session." },
+      "headline": { "displayName": "Headline", "purpose": "Post titles (h1 in PostLayout). Primary reading entry point." },
+      "title":    { "displayName": "Title",    "purpose": "In-prose section headers (h2, h3). Signposts inside the reading flow." },
+      "body":     { "displayName": "Body",     "purpose": "All prose content. Primary reading experience. Max 68ch measure." },
+      "label":    { "displayName": "Label",    "purpose": "Section markers, nav links, metadata. Muted by default; uppercase tracked." },
+      "mono":     { "displayName": "Mono",     "purpose": "All code — inline and block. Never used for UI elements." }
+    },
+    "shadows": [
+      {
+        "name": "ambient-low",
+        "value": "0 1px 3px rgba(0,0,0,0.08)",
+        "purpose": "State shadow only. Available for hover lift on interactive cards. Never present at rest."
+      },
+      {
+        "name": "ambient-mid",
+        "value": "0 4px 12px rgba(0,0,0,0.10)",
+        "purpose": "True modal-level elevation. Reserved for dialogs and elevated overlays. Do not use below that threshold."
+      }
+    ],
+    "motion": [
+      {
+        "name": "standard",
+        "value": "150ms ease",
+        "purpose": "Default state transition. Color, background, opacity changes. All theme toggle transitions."
+      }
+    ],
+    "breakpoints": [
+      { "name": "mobile-hide",  "value": "640px",  "purpose": "Nav collapses below this point. Wordmark and theme toggle only." },
+      { "name": "prose-max",    "value": "720px",  "purpose": "Hard maximum for prose content width." },
+      { "name": "page-max",     "value": "1200px", "purpose": "Outer container constraint." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tag Pill",
+      "kind": "chip",
+      "refersTo": "tag-pill",
+      "description": "Topic tag on post cards and post headers. The only non-canvas background color in the system.",
+      "html": "<a href=\"/tags/systems\" class=\"ds-tag-pill\">#systems</a>",
+      "css": ".ds-tag-pill { display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; color: #1d4ed8; background: rgba(29, 78, 216, 0.10); border: 1px solid rgba(29, 78, 216, 0.25); padding: 0.2em 0.6em; border-radius: 999px; text-decoration: none; transition: background 150ms ease; } .ds-tag-pill:hover { background: rgba(29, 78, 216, 0.18); text-decoration: none; }"
+    },
+    {
+      "name": "Post Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "A post listing entry. No card shape — a divider-separated list item. Border-bottom only.",
+      "html": "<article class=\"ds-post-card\"><div class=\"ds-post-card__meta\"><time>May 14, 2025</time><span class=\"ds-post-card__sep\">·</span><span>4 min read</span></div><h2><a href=\"/blog/example\">Building this blog</a></h2><p class=\"ds-post-card__desc\">A short description of the post, truncated to two lines if needed for visual rhythm.</p><div class=\"ds-post-card__tags\"><a href=\"/tags/astro\" class=\"ds-tag-pill\">#astro</a></div></article>",
+      "css": ".ds-post-card { padding: 1.75rem 0; border-bottom: 1px solid #e5e7eb; } .ds-post-card:last-child { border-bottom: none; } .ds-post-card__meta { display: flex; align-items: center; gap: 0.5rem; font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; color: #6b7280; margin-bottom: 0.75rem; } .ds-post-card__sep { opacity: 0.4; } .ds-post-card h2 { font-family: 'Inter', system-ui, sans-serif; font-size: 1.5rem; font-weight: 600; line-height: 1.3; margin-bottom: 0.75rem; } .ds-post-card h2 a { color: #1a1a1a; text-decoration: none; transition: color 150ms ease; } .ds-post-card h2 a:hover { color: #1d4ed8; } .ds-post-card__desc { font-family: 'Lora', Georgia, serif; color: #6b7280; margin-bottom: 1rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; } .ds-post-card__tags { display: flex; flex-wrap: wrap; gap: 0.5rem; } .ds-tag-pill { display: inline-block; font-family: 'Inter', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; color: #1d4ed8; background: rgba(29,78,216,0.10); border: 1px solid rgba(29,78,216,0.25); padding: 0.2em 0.6em; border-radius: 999px; text-decoration: none; transition: background 150ms ease; } .ds-tag-pill:hover { background: rgba(29,78,216,0.18); }"
+    },
+    {
+      "name": "Site Header",
+      "kind": "nav",
+      "refersTo": "header",
+      "description": "Sticky top navigation. Frosted glass on scroll — the one permitted backdrop-filter in the system.",
+      "html": "<header class=\"ds-header\"><div class=\"ds-header__inner\"><a href=\"/\" class=\"ds-wordmark\">xtinyrabbit</a><nav class=\"ds-nav\"><a href=\"/blog\">Blog</a><a href=\"/tags\">Topics</a><a href=\"/about\">About</a></nav></div></header>",
+      "css": ".ds-header { position: sticky; top: 0; height: 64px; border-bottom: 1px solid #e5e7eb; background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 50; transition: background 150ms ease, border-color 150ms ease; } .ds-header__inner { height: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; display: flex; align-items: center; gap: 2rem; } .ds-wordmark { font-family: 'Inter', system-ui, sans-serif; font-weight: 600; font-size: 1.25rem; color: #1a1a1a; text-decoration: none; letter-spacing: -0.01em; margin-right: auto; transition: color 150ms ease; } .ds-wordmark:hover { color: #1d4ed8; } .ds-nav { display: flex; gap: 1.5rem; } .ds-nav a { font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #6b7280; text-decoration: none; transition: color 150ms ease; } .ds-nav a:hover { color: #1a1a1a; }"
+    },
+    {
+      "name": "CTA Link",
+      "kind": "button",
+      "refersTo": null,
+      "description": "Primary call-to-action for the site. A text link with arrow — not a button. Matches the system's restraint.",
+      "html": "<a href=\"/blog\" class=\"ds-cta\">Read all posts →</a>",
+      "css": ".ds-cta { display: inline-flex; align-items: center; font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; color: #1d4ed8; text-decoration: none; gap: 0.25rem; transition: text-decoration 150ms ease; } .ds-cta:hover { text-decoration: underline; text-underline-offset: 3px; }"
+    },
+    {
+      "name": "Section Label",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Small uppercase label used to introduce sections (e.g. 'Recent posts'). Muted, tracked, unobtrusive.",
+      "html": "<h2 class=\"ds-section-label\">Recent posts</h2>",
+      "css": ".ds-section-label { font-family: 'Inter', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 0.5rem; }"
+    },
+    {
+      "name": "Blockquote",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "In-prose quotation. The one element with a border-left — permitted because it signals quotation, not decoration.",
+      "html": "<blockquote class=\"ds-blockquote\"><p>The interface should disappear. The writing should remain.</p></blockquote>",
+      "css": ".ds-blockquote { border-left: 3px solid #1d4ed8; padding-left: 1.25rem; color: #6b7280; font-style: italic; margin-bottom: 1.5rem; font-family: 'Lora', Georgia, serif; font-size: 1.125rem; line-height: 1.75; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Signal Log",
+    "overview": "This is an engineer's personal record — the kind of document you keep because thinking in public has value, not because you want to be noticed. The design reflects that posture: everything recedes. The type is the interface. The chrome — header, footer, navigation — exists to orient, not to impress.\n\nThe system is deliberately low-ceremony. A reader arriving here should feel the same as opening a well-worn technical reference: no loading state to admire, no hero to pause on, no platform to acknowledge. Just text, organized clearly, with enough contrast to read for an hour. Color appears exactly once in any meaningful quantity, as a signal for what can be acted on. Everything else is ink on a quiet surface.\n\nThis system explicitly rejects the Medium and Substack aesthetic — the indistinguishable platform look, the engagement widgets, the 'clap' energy. It rejects the corporate tech blog: committee-approved, risk-neutral, nobody-home design. Both errors share the same root: design that serves the platform or the org, not the writing.",
+    "keyCharacteristics": [
+      "Restrained color strategy: one Signal Blue on near-white and near-black surfaces",
+      "Dual font role: Lora for thought, Inter for navigation — never swapped",
+      "Flat elevation: hairline borders and tonal surfaces carry all structural weight",
+      "Prose-width constraint: 68ch, enforced everywhere",
+      "Full dark/light theme parity — contrast requirements hold in both modes"
+    ],
+    "rules": [
+      { "name": "The One Voice Rule",       "body": "Signal Blue appears on less than 10% of any view. Its scarcity is the point. Do not introduce a second accent color.", "section": "colors" },
+      { "name": "The Dual Surface Rule",    "body": "Light mode uses Canvas and Canvas Dim together. A page that uses only Canvas reads as unintentionally bare. Use Canvas Dim for code blocks, table headers, and section backgrounds.", "section": "colors" },
+      { "name": "The Serif/Sans Split Rule","body": "Lora carries thought; Inter carries navigation. Prose headings use Inter — they are signposts, not content. Never put UI labels or navigation in Lora.", "section": "typography" },
+      { "name": "The Measure Rule",         "body": "Prose content has a hard maximum of 68ch. No exceptions.", "section": "typography" },
+      { "name": "The Scale Floor Rule",     "body": "Body text never goes below 18px (1.125rem).", "section": "typography" },
+      { "name": "The Flat-by-Default Rule", "body": "No element has a shadow at rest. Shadows appear only as a response to state: hover lift, focus elevation, or modal context.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Signal Blue below 10% of any view's surface area. Its rarity is its authority.",
+      "Do use Lora for all prose content and Inter for all UI chrome.",
+      "Do constrain prose to 68ch.",
+      "Do use 1px hairlines to define structure.",
+      "Do ensure WCAG AA contrast holds independently in both light and dark themes.",
+      "Do respect prefers-reduced-motion — all transitions should be 0ms when reduced motion is set.",
+      "Do use Canvas Dim and Void Dim to create tonal rhythm without adding color."
+    ],
+    "donts": [
+      "Don't make this look like Medium or Substack. No platform aesthetic, no engagement widgets, no hero-image-plus-byline card layout.",
+      "Don't produce a corporate tech blog aesthetic — sanitized, brand-neutral, committee-approved.",
+      "Don't add a second accent color. One voice only.",
+      "Don't apply border-left as a decorative stripe on cards, callouts, or list items. The blockquote is the single permitted exception.",
+      "Don't use gradient text (background-clip: text).",
+      "Don't add glassmorphism decoratively. The header's frosted glass is functional, not aesthetic.",
+      "Don't add shadows to resting elements.",
+      "Don't set prose font size below 18px.",
+      "Don't put Lora on UI elements (nav links, labels, buttons).",
+      "Don't use the hero-metric template."
+    ]
+  }
+}

@@ -1,0 +1,164 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+const navLinks = [
+  { href: '/blog', label: 'Blog' },
+  { href: '/tags', label: 'Topics' },
+  { href: '/about', label: 'About' },
+];
+const current = Astro.url.pathname;
+---
+
+<header id="site-header">
+  <div class="container header-inner">
+    <a href="/" class="wordmark">xtinyrabbit</a>
+    <nav aria-label="Primary" id="primary-nav">
+      {navLinks.map(l => (
+        <a href={l.href} class={current.startsWith(l.href) ? 'active' : ''}>{l.label}</a>
+      ))}
+    </nav>
+    <ThemeToggle />
+    <button
+      class="nav-toggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  const header = document.getElementById('site-header');
+  const toggle = header?.querySelector<HTMLButtonElement>('.nav-toggle');
+  const nav = document.getElementById('primary-nav');
+
+  function close() {
+    header?.classList.remove('nav-open');
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.setAttribute('aria-label', 'Open navigation');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = header?.classList.toggle('nav-open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Close navigation' : 'Open navigation');
+  });
+
+  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', close));
+
+  document.addEventListener('click', e => {
+    if (!header?.contains(e.target as Node)) close();
+  });
+</script>
+
+<style>
+  header {
+    position: sticky;
+    top: 0;
+    height: var(--header-height);
+    border-bottom: 1px solid var(--color-border);
+    background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 50;
+    transition: background var(--transition), border-color var(--transition);
+  }
+
+  .header-inner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .wordmark {
+    font-family: var(--font-ui);
+    font-weight: 600;
+    font-size: var(--text-lg);
+    color: var(--color-text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    margin-right: auto;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .wordmark:hover { text-decoration: none; color: var(--color-accent); }
+  }
+
+  nav { display: flex; gap: 1.5rem; }
+  nav a {
+    font-family: var(--font-ui);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color 150ms ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    nav a:hover { color: var(--color-text); text-decoration: none; }
+  }
+  nav a.active { color: var(--color-text); }
+
+  /* ── Hamburger button ── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    padding: 0.4rem;
+    cursor: pointer;
+    margin-left: -0.5rem;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text);
+    border-radius: 2px;
+    transition: transform 220ms ease, opacity 150ms ease;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 640px) {
+    nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0.25rem 1.5rem 1rem;
+      gap: 0;
+    }
+
+    nav a {
+      padding: 0.85rem 0;
+      font-size: var(--text-base);
+      border-bottom: 1px solid var(--color-border);
+      color: var(--color-text);
+    }
+    nav a:last-child { border-bottom: none; }
+
+    #site-header.nav-open nav { display: flex; }
+
+    .nav-toggle { display: flex; }
+
+    /* Hamburger → X */
+    #site-header.nav-open .nav-toggle span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    #site-header.nav-open .nav-toggle span:nth-child(2) {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    #site-header.nav-open .nav-toggle span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+  }
+</style>

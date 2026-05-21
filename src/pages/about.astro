@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import TerminalHero from '../components/TerminalHero.astro';
+import '../styles/prose.css';
+---
+
+<BaseLayout title="About" description="About xtinyrabbit">
+  <div class="container">
+    <PageHeader title="About" />
+    <TerminalHero />
+    <article class="about-article prose">
+      <p>
+        I'm a software engineer. I started in QA, moved through consulting, settled
+        into backend systems, and now spend most of my time at the intersection of
+        AI tooling, developer experience, and the harness work that makes all of it
+        actually run. The throughline is the same: get the system to tell you when
+        something is wrong, preferably before users do.
+      </p>
+
+      <p>
+        Most of my work lives in distributed systems — Go services talking over
+        gRPC and Kafka, REST APIs that need to stay honest under load, GraphQL
+        layers that shouldn't become a mess. CI/CD, observability, the full
+        DevOps loop. I lean toward TDD not as dogma but because fast feedback
+        loops make the work easier to trust.
+      </p>
+
+      <p>
+        I care about simplicity. Not as an aesthetic — as a strategy. Complex
+        systems fail in complex ways; simple ones fail in ways you can reason
+        about. The best system design decisions I've made were subtractions.
+        The worst were additions I thought I'd need later.
+      </p>
+
+      <p>
+        This blog is where I write about things I've figured out, usually the
+        hard way. Distributed systems, tooling, the design decisions that look
+        obvious in hindsight. Fail fast, learn fast, write it down.
+      </p>
+
+      <h2>What I work with</h2>
+      <ul>
+        <li>Go — primary language for backend and systems work</li>
+        <li>Distributed systems: REST, gRPC, GraphQL, Kafka</li>
+        <li>DevOps, CI/CD, developer experience tooling</li>
+        <li>AI integrations and agent harness infrastructure</li>
+        <li>Fullstack when the problem calls for it</li>
+      </ul>
+
+      <h2>Find me elsewhere</h2>
+      <ul>
+        <li><a href="https://github.com/xlargerabbit" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="/rss.xml">RSS feed</a></li>
+      </ul>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .container { padding-block: 3rem 5rem; }
+  .about-article { max-width: var(--prose-width); }
+</style>
